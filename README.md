@@ -1,17 +1,17 @@
 # ICT-FaceKit
 ICT's Vision and Graphics Lab's morphable face model and toolkit
 
-## Non-commercial ICT Face Model
-The non-commercial version of the ICT Face Model consists of a base topology along with definitions of facial landmarks, rigid, and morphable vertices, and a set of linear shape vectors in the form of principal components of light stage scan data registered to a common topology.
+## ICT Face Model Light
+The light version of the ICT Face Model consists of a base topology along with definitions of facial landmarks, rigid, and morphable vertices, and a set of linear shape vectors in the form of principal components of light stage scan data registered to a common topology.
 
-The non-commercial version of ICT-FaceKit is released under the MIT license.
+ICT-FaceKit is released under the MIT license.
 
 ### Face Model Topology
 
-![alt text](figures/face_front.png "")
-![alt text](figures/face_front_select.png "")
-![alt text](figures/face_side_select.png "")
-![alt text](figures/face_top_select.png "")
+![alt text](figures/face_front.png "Face front")
+![alt text](figures/face_front_select.png "Face front selection")
+![alt text](figures/face_side_select.png "Face side selection")
+![alt text](figures/face_top_select.png "Face top selection")
 
 | Ordinal#| Geometry name        | Vertex indices | Polygon indices | #Vertices | #Faces |
 |---------|----------------------|----------------|-----------------|-----------|--------|
@@ -34,18 +34,18 @@ The non-commercial version of ICT-FaceKit is released under the MIT license.
 | #15     | Eyelashes left       | [25351:26034]  | [25304:25843]   | 684       | 540    |
 | #16     | Eyelashes right      | [26035:26718]  | [25844:26383]   | 684       | 540    |
 
-![alt text](figures/face.png "")
-![alt text](figures/gums_tongue.png "")
-![alt text](figures/teeth.png "")
-![alt text](figures/scleras.png "")
-![alt text](figures/lacrimal_fluid.png "")
-![alt text](figures/eyeblend.png "")
-![alt text](figures/eye_occlusion.png "")
-![alt text](figures/eyelashes.png "")
+![alt text](figures/face.png "Face")
+![alt text](figures/gums_tongue.png "Gums and tongue")
+![alt text](figures/teeth.png "Teeth")
+![alt text](figures/scleras.png "Eyeballs")
+![alt text](figures/lacrimal_fluid.png "Lacrimal fluid")
+![alt text](figures/eyeblend.png "Eye blend meshes")
+![alt text](figures/eye_occlusion.png "Eye occlusion")
+![alt text](figures/eyelashes.png "Eyelash poly strips")
 
 ### UV Layout
 
-![alt text](figures/uvs.png "")
+![alt text](figures/uvs.png "UV layout")
 
 ### Face Area Detail
 
@@ -54,7 +54,7 @@ The non-commercial version of ICT-FaceKit is released under the MIT license.
 | #0      | Full face area   | [0:9408]       | [0:9229]        | 9409      | 9230   |
 | #1      | Narrow face area | [0:6705]       | [0:6559]        | 6706      | 6560   |
 
-![alt text](figures/face_area_detail.png "")
+![alt text](figures/face_area_detail.png "Face area detail")
 
 ### Eyeball Details
 
@@ -65,8 +65,8 @@ The non-commercial version of ICT-FaceKit is released under the MIT license.
 | #2      | Sclera right  | [23021:23790]  | [23094:23893]   | 770       | 800    |
 | #3      | Iris right    | [23791:24590]  | [23894:24691]   | 800       | 798    |
 
-![alt text](figures/scleras.png "")
-![alt text](figures/irises.png "")
+![alt text](figures/scleras.png "Scleras")
+![alt text](figures/irises.png "Irises")
 
 Additional eye geometry including lacrimal fluid, blend meshes, and occlusion meshes adopts the style of Unreal Engine's [Digital Human Project](https://docs.unrealengine.com/en-US/Resources/Showcases/DigitalHumans/index.html "Unreal Engine's Digital Human Project"). The existing geometries are plug and play with Unreal Engine's shaders.
 
@@ -107,15 +107,35 @@ Additional eye geometry including lacrimal fluid, blend meshes, and occlusion me
 | #30      | 2nd Molar lower right       | [21096:21271]  | [21130:21311]   | 176       | 182    |
 | #31      | 3rd molar lower right       | [21272:21450]  | [21312:21495]   | 179       | 184    |
 
-![alt text](figures/teeth_detail.png "")
+![alt text](figures/teeth_detail.png "Teeth details")
 
 ### Facial Landmarks
+
+All the following indices are 0-indexed.
 
 Multi-PIE 68 point facial landmarks indices:
 
     1225, 1888, 1052, 367, 1719, 1722, 2199, 1447, 966, 3661, 4390, 3927, 3924, 2608, 3272, 4088, 3443, 268, 493, 1914, 2044, 1401, 3615, 4240, 4114, 2734, 2509, 978, 4527, 4942, 4857, 1140, 2075, 1147, 4269, 3360, 1507, 1542, 1537, 1528, 1518, 1511, 3742, 3751, 3756, 3721, 3725, 3732, 5708, 5695, 2081, 0, 4275, 6200, 6213, 6346, 6461, 5518, 5957, 5841, 5702, 5711, 5533, 6216, 6207, 6470, 5517, 5966
 
-![alt text](figures/landmarks_multi_pie68.png "")
+![alt text](figures/landmarks_multi_pie68.png "Multu PIE 68 points markup")
+
+Right jawline (substitutes 0-7 in Multi PIE):
+
+    1278, 1272, 12, 1834, 243, 781, 2199, 1447
+
+Left jawline (substitutes 9-16 in Multi PIE):
+
+    3661, 4390, 3022, 2484, 4036, 2253, 3490, 3496
+
+Right extended jawline (superset of right jawline):
+
+    1280, 1278, 1275, 1272, 1248, 12, 820, 1834, 1902, 243, 844, 781, 1673, 2199, 801, 1447, 800
+
+Left extended jawline (superset of left jawline):
+
+    3041, 3661, 3042, 4390, 3880, 3022, 3085, 2484, 4102, 4036, 3061, 2253, 3466, 3490, 3493, 3496, 3498
+
+![alt text](figures/jawline.png "Jawline")
 
 ### Identity shape vectors
 
@@ -128,7 +148,7 @@ The non-commercial model includes a set of 100 PCA modes of linear morph targets
 
 Current expression shapes adapt the naming convention of the Apple ARKit. Expression shapes and naming convention are subject to change.
 
-## Commercial Version
+## Full ICT Face Model
 
 More info to come
 
