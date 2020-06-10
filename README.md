@@ -133,10 +133,22 @@ Current expression shapes adapt the naming convention of the Apple ARKit. Expres
 More info to come
 
 ## Publications
+
 ### Learning Formation of Physically Based Face Attributes
 CVPR 2020 : IEEE/CVF Conference on Computer Vision and Pattern Recognition
+
 #### Abstract
 Based on a combined data set of 4000 high resolution facial scans, we introduce a non-linear morphable face model, capable of producing multifarious face geometry of pore-level resolution, coupled with material attributes for use in physically-based rendering.
 We aim to maximize the variety of the participants' face identities, while increasing the robustness of correspondence between unique components, including middle-frequency geometry, albedo maps, specular intensity maps and high-frequency displacement details. Our deep learning based generative model learns to correlate albedo and geometry, which ensures the anatomical correctness of the generated assets. We demonstrate potential use of our generative model for novel identity generation, model fitting, interpolation, animation, high fidelity data visualization, and low-to-high resolution data domain transferring. We hope the release of this generative model will encourage further cooperation between all graphics, vision, and data focused professionals, while demonstrating the cumulative value of every individual's complete biometric profile.
+
 #### Citing
-	To come
+BibTex:
+
+    @misc{li2020learning,
+    title={Learning Formation of Physically-Based Face Attributes},
+    author={Ruilong Li and Karl Bladin and Yajie Zhao and Chinmay Chinara and Owen Ingraham and Pengda Xiang and Xinglei Ren and Pratusha Prasad and Bipin Kishore and Jun Xing and Hao Li},
+    year={2020},
+    eprint={2004.03458},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV}
+    }
