@@ -1,24 +1,26 @@
 """A module defining functionality to use the FaceXModel morphable face model.
 
 This module defines the FaceModel class which allows one work with faces
-parameterized by the FaxeXMorphable face model. In the following typical
-usage example, one can sample a random face from the distribution, compute the
+parameterized by the FaceXModel morphable face model. In the following typical
+usage example, one samples a random face from the distribution, computes the
 corresponding deformed mesh, and write the corresponding deformed mesh as a
 .obj file.
 
   Typical usage example:
 
-  my_face = FaceModel()
-  my_face.write_random_identity()
+  FaceModel.load_face_x_model()  # Load the FaceXModel
+  my_face = FaceModel()  # Make a new face
+  my_face.write_random_identity() # Sample a random face and write it
 """
 
 from copy import deepcopy
 import time
 
+import json
 import numpy as np
 import openmesh as om
 
-from face_x_model import face_x_model as fxm
+import face_x_model
 
 
 class FaceModel():  # pylint: disable=too-many-instance-attributes
@@ -31,6 +33,10 @@ class FaceModel():  # pylint: disable=too-many-instance-attributes
     This class allows one to set the identity and expression weights, compute
     the deformed mesh, write the deformed mesh, and sample a random identity
     from the distribution.
+
+    Keeps track of a static variable face_x_model that is either explititly
+    initialized to a FaceXModel object or intialized the first time the
+    FaceModel constructor is called.
 
     Attributes:
         generic_neutral_mesh: A reference to the generic neutral mesh object
@@ -70,6 +76,15 @@ class FaceModel():  # pylint: disable=too-many-instance-attributes
         filename: The filename used when writing the resulting deformed mesh.
     """
 
+    # A static variable to store a FaceXModel object
+    face_x_model = None
+
+    @staticmethod
+    def load_face_x_model():
+        """Loads the FaceXModel into the face_x_model static variable.
+        """
+        FaceModel.face_x_model = face_x_model.FaceXModel()
+
     def __init__(self, id_weights=None, ex_weights=None, write_path=None,
                  filename=None):
         """Constructs a new FaceModel object.
@@ -81,6 +96,10 @@ class FaceModel():  # pylint: disable=too-many-instance-attributes
         If specified, the identity weights are intialized to id_weights, the
         expression weights are initialized to ex_weights, and the write_path
         and filename properties are set.
+
+        If the static variable FaceModel.face_x_model is None, then this
+        constructor calls the FaceModel.load_face_x_model to load the
+        FaceXModel.
 
         Args:
             id_weights: An optional numpy array to intialize the identity
@@ -99,17 +118,22 @@ class FaceModel():  # pylint: disable=too-many-instance-attributes
             expression weights, with write_path and filename properties set.
         """
 
+        # If we have not loaded the FaceXModel, load it
+        if FaceModel.face_x_model is None:
+            FaceModel.load_face_x_model()
+        fxm = FaceModel.face_x_model
+
         # We keep track of the generic neutral mesh
-        self.generic_neutral_mesh = fxm["generic_neutral_mesh"]
+        self.generic_neutral_mesh = fxm.generic_neutral_mesh
         self.generic_neutral_points = self.generic_neutral_mesh.points()
         self.num_vertices = self.generic_neutral_mesh.n_vertices()
 
         # We initialize the deformed mesh to the generic neutral mesh
-        self.deformed_mesh = deepcopy(fxm["generic_neutral_mesh"])
+        self.deformed_mesh = deepcopy(self.generic_neutral_mesh)
         self.deformed_points = self.deformed_mesh.points()
 
         # We store references to the identity shape modes
-        self.identity_shape_modes = fxm["identity_deltas"]
+        self.identity_shape_modes = fxm.identity_shape_modes
         self.num_identities = len(self.identity_shape_modes)
         self.identity_weights = np.zeros((self.num_identities))
 
@@ -118,7 +142,7 @@ class FaceModel():  # pylint: disable=too-many-instance-attributes
             self.identity_weights[:] = id_weights
 
         # We store references to the expression shape modes
-        self.expression_shape_modes = fxm["expression_deltas"]
+        self.expression_shape_modes = fxm.expression_shape_modes
         self.num_expressions = len(self.expression_shape_modes)
         self.expression_weights = np.zeros((self.num_expressions))
 
@@ -217,3 +241,25 @@ class FaceModel():  # pylint: disable=too-many-instance-attributes
         self.sample_random_identity()
         self.deform_mesh()
         self.write_mesh()
+
+    def read_face_model(self, file_path):
+        """Reads a face model parameterization from a .json file.
+
+        Reads in and stores the identity weights and expression weights
+        encoded in a .json file. After reading in and storing the weights,
+        updates the deformed mesh.
+
+        Args:
+            file_path: The file path of the .json file we are reading the
+                identity and expression coefficents from.
+        """
+        with open(file_path) as input_file:
+            # Read the identity and expression weights
+            face_model_json = json.load(input_file)
+            id_weights = np.array(face_model_json['identity_coefficients'])
+            ex_weights = np.array(face_model_json['expression_coefficients'])
+
+            # Set the identity and expression weights and update the mesh
+            self.identity_weights = id_weights
+            self.expression_weights = ex_weights
+            self.deform_mesh()
