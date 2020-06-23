@@ -3,16 +3,15 @@
 
 import copy
 import os
+import openmesh as om
 
-import ict_face_model
 import face_model_io
 
 
 def main():
     """Verifies that the FaceModel class loads the ICT Face Model properly.
     """
-    face_model = ict_face_model.FaceModel()
-    face_model.load_model('../FaceXModel')
+    face_model = face_model_io.load_face_model('../FaceXModel')
     verify_model_loaded('./verfication_files', face_model)
 
 
@@ -28,7 +27,7 @@ def verify_model_loaded(dir_path, face_model):
     """
 
     # Check if ICT face model loaded
-    if not face_model._model_loaded:  # pylint:disable=protected-access
+    if not face_model._model_initialized:  # pylint:disable=protected-access
         print("The FaceModel has not loaded the ICT Face Model.")
         return
 
@@ -69,7 +68,7 @@ def _verify_model_loaded_helper(dir_path, generic_neutral_mesh, file_names,
 
         # Write the meshes to be verified
         write_path = os.path.join(dir_path, file_name + '.obj')
-        face_model_io.write_mesh(write_path, write_mesh)
+        om.write_mesh(write_path, write_mesh)
 
 
 if __name__ == '__main__':
