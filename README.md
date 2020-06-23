@@ -47,7 +47,7 @@ ICT-FaceKit is released under the MIT license.
 
 ![alt text](figures/uvs.png "UV layout")
 
-### Face Area Detail
+### Face Area Details
 
 | Ordinal#| Geometry name    | Vertex indices | Polygon indices | #Vertices | #Faces |
 |---------|------------------|----------------|-----------------|-----------|--------|
@@ -139,24 +139,82 @@ Left extended jawline (superset of left jawline):
 
 ### Identity shape vectors
 
-The non-commercial model includes a set of 100 PCA modes of linear morph targets. The linear morphing affects the full geometry of the face model and is based on light stage facial scan data.
+ICT Face Model Light includes a set of 100 PCA modes of linear morph targets. The linear morphing affects the full geometry of the face model and is based on light stage facial scan data.
 
 "What is a Linear 3D Morphable Face Model?" (Youtube link):
+
 [![What is a Linear 3D Morphable Face Model?](http://img.youtube.com/vi/MlGkzFeyCYc/0.jpg)](https://www.youtube.com/watch?v=MlGkzFeyCYc "What is a Linear 3D Morphable Face Model?")
 
 ### Expression Shapes
 
-Current expression shapes adapt the naming convention of the Apple ARKit. Expression shapes and naming convention are subject to change.
+Current expression shapes adopt the naming convention of the Apple ARKit, but with "Left" and "Right" specified with "\_L" and "\_R". Additionally, we separeate the shapes (`browInnerUp_L` and `browInnerUp_R`), and (`cheekPuff_L` and `cheekPuff_R`).
+
+Our expression shapes closest relation to FACS units are as follows:
+
+| FACS unit                 | Our shapes                          |
+|---------------------------|-------------------------------------|
+| AU1 Inner brow raiser     | browInnerUp_L + browInnerUp_R       |
+| AU2 Outer brow raiser     | browOuterUp_L + browOuterUp_R       |
+| AU4 Brow lowerer          | browDown_L + browDown_R             |
+| AU6 Cheek raiser          | cheekSquint_L + cheekSquint_R       |
+| AU5 Upper lid raiser      | eyeWide_L + eyeWide_R               |
+| AU7 Lid tightener         | eyeSquint_L + eyeSquint_R           |
+| AU9 Nose Wrinkler         | noseSneer_L + noseSneer_R           |
+| AU10 Upper lip raiser     | mouthShrugUpper                     |
+| AU11 Nasolabial deepener  | mouthUpperUp_L + mouthUpperUp_R     |
+| AU12 Lip corner puller    | mouthSmile_L + mouthSmile_R         |
+| AU14 Dimpler              | mouthDimple_L + mouthDimple_R       |
+| AU15 Lip corner depressor | mouthFrown_L + mouthFrown_R         |
+| AU16 Lower lip depressor  | mouthLowerDown_L + mouthLowerDown_R |
+| AU17 Chin raiser          | mouthShrugLower                     |
+| AU18 Lip Pucker           | mouthPucker                         |
+| AU20 Lip stretcher        | mouthStretch_L + mouthStretch_R     |
+| AU22 Lip Funneler         | mouthFunnel                         |
+| AU24 Lip pressor          | mouthPress_L + mouthPress_R         |
+| AU27 Mouth stretch        | jawOpen                             |
+| AU28 Lip Suck             | mouthRollLower + mouthRollUpper     |
+| AU29 Jaw thrust           | jawForward                          |
+| AU30 Jaw sideways (left)  | jawLeft                             |
+| AU30 Jaw sideways (right) | jawRight                            |
+| AU33 Cheek blow           | cheekPuff_L + cheekPuff_R           |
+| AU45 Blink                | eyeBlink_L + eyeBlink_R             |
+| AU61 Eyes turn left       | eyeLookOut_L + eyeLookIn_R          |
+| AU62 Eyes turn right      | eyeLookOut_R + eyeLookIn_L          |
+| AU63 Eyes up              | eyeLookUp_L + eyeLookUp_R           |
+| AU64 Eyes down            | eyeLookDown_L + eyeLookDown_R       |
 
 ## Full ICT Face Model
 
-More info to come
+Additional features are supported in ICT's Full face model. For more info, contact bladin@ict.usc.edu, or haase@ict.usc.edu
+
+| Feature                              | ICT Face Model Light | Full ICT Face Model |
+|--------------------------------------|----------------------|---------------------|
+| Base model topology                  | Yes                  | Yes                 |
+| #PCA Identity shape modes            | 100                  | 200+                |
+| #PCA Identity albedo modes           | 0                    | 200+                |
+| #Expression blend shapes             | 53                   | 53                  |
+| FBX face rig                         | No                   | Yes                 |
+| Albedo to specularity inference      | No                   | Yes                 |
+| Albedo to displacement inference     | No                   | Yes                 |
+| Static face fitting software (FaceX) | No                   | Yes                 |
 
 ## Publications
+
 ### Learning Formation of Physically Based Face Attributes
 CVPR 2020 : IEEE/CVF Conference on Computer Vision and Pattern Recognition
+
 #### Abstract
 Based on a combined data set of 4000 high resolution facial scans, we introduce a non-linear morphable face model, capable of producing multifarious face geometry of pore-level resolution, coupled with material attributes for use in physically-based rendering.
-We aim to maximize the variety of the participants' face identities, while increasing the robustness of correspondence between unique components, including middle-frequency geometry, albedo maps, specular intensity maps and high-frequency displacement details. Our deep learning based generative model learns to correlate albedo and geometry, which ensures the anatomical correctness of the generated assets. We demonstrate potential use of our generative model for novel identity generation, model fitting, interpolation, animation, high fidelity data visualization, and low-to-high resolution data domain transferring. We hope the release of this generative model will encourage further cooperation between all graphics, vision, and data focused professionals, while demonstrating the cumulative value of every individual's complete biometric profile.
+We aim to maximize the variety of the participants' face identities, while increasing the robustness of correspondence between unique components, including middle-frequency geometry, albedo maps, specular intensity maps and high-frequency displacement details. Our deep learning based generative model learns to correlate albedo and geometry, which ensures the anatomical correctness of the generated assets. We demonstrate potential use of our generative model for novel identity generation, model fitting, interpolation, animation, high fidelity data visualization, and low-to-high resolution data domain transferring. We hope the release of this generative model will encourage further cooperation between all graphics, vision, and data focused professionals, while demonstrating the cumulative value of every individuals' complete biometric profile.
+
 #### Citing
-	To come
+BibTex:
+
+    @misc{li2020learning,
+    title={Learning Formation of Physically-Based Face Attributes},
+    author={Ruilong Li and Karl Bladin and Yajie Zhao and Chinmay Chinara and Owen Ingraham and Pengda Xiang and Xinglei Ren and Pratusha Prasad and Bipin Kishore and Jun Xing and Hao Li},
+    year={2020},
+    eprint={2004.03458},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV}
+    }
