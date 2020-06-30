@@ -41,7 +41,7 @@ def main():
     face_model.deform_mesh()
 
     # Write the deformed mesh
-    face_model_io.write_deformed_mesh('../sample_data/sample_identity.obj', face_model)
+    face_model_io.write_deformed_mesh('../sample_data_out/sample_identity.obj', face_model)
 
 if __name__ == '__main__':
     main()

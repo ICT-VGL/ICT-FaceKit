@@ -198,6 +198,22 @@ Additional features are supported in ICT's Full face model. For more info, conta
 | Albedo to displacement inference     | No                   | Yes                 |
 | Static face fitting software (FaceX) | No                   | Yes                 |
 
+## Script Package
+
+This software package comes with some example scripts to get started. First, install external python packages:
+
+    pip install numpy
+    pip install openmesh
+
+cd in to the `/Scripts` directory as some example scripts require this root path.
+
+Run example scripts:
+
+    python sample_random.py
+    python read_identity.py
+
+Outputs will be written in `/sample_data_out`
+
 ## Publications
 
 ### Learning Formation of Physically Based Face Attributes

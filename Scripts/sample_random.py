@@ -42,7 +42,7 @@ def main():
         face_model.deform_mesh()
 
         # Write the deformed mesh
-        write_path = '../sample_data/random_identity{:02d}.obj'.format(i)
+        write_path = '../sample_data_out/random_identity{:02d}.obj'.format(i)
         face_model_io.write_deformed_mesh(write_path, face_model)
 
     print("Finished writing meshes.")
