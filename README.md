@@ -196,7 +196,6 @@ Additional features are supported in ICT's Full face model. Some features of the
 | FBX face rig                         | No                   | Yes                 |
 | Albedo to specularity inference      | No                   | Yes                 |
 | Albedo to displacement inference     | No                   | Yes                 |
-| Static face fitting software (FaceX) | No                   | Yes                 |
 
 ## Script Package
 
