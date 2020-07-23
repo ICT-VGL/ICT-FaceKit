@@ -185,7 +185,7 @@ Our expression shapes closest relation to FACS units are as follows:
 
 ## Full ICT Face Model
 
-Additional features are supported in ICT's Full face model. For more info, contact bladin@ict.usc.edu, or haase@ict.usc.edu
+Additional features are supported in ICT's Full face model. Some features of the full model are still under development. The full model will be released under a different USC specific license. For questions, or to sign up for a note on when it will be ready, contact bladin@ict.usc.edu, or haase@ict.usc.edu
 
 | Feature                              | ICT Face Model Light | Full ICT Face Model |
 |--------------------------------------|----------------------|---------------------|
@@ -196,7 +196,22 @@ Additional features are supported in ICT's Full face model. For more info, conta
 | FBX face rig                         | No                   | Yes                 |
 | Albedo to specularity inference      | No                   | Yes                 |
 | Albedo to displacement inference     | No                   | Yes                 |
-| Static face fitting software (FaceX) | No                   | Yes                 |
+
+## Script Package
+
+This software package comes with some example scripts to get started. First, install external python packages:
+
+    pip install numpy
+    pip install openmesh
+
+cd in to the `/Scripts` directory as some example scripts require this root path.
+
+Run example scripts:
+
+    python sample_random.py
+    python read_identity.py
+
+Outputs will be written in `/sample_data_out`
 
 ## Publications
 
