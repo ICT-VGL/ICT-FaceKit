@@ -185,7 +185,7 @@ Our expression shapes closest relation to FACS units are as follows:
 
 ## Full ICT Face Model
 
-Additional features are supported in ICT's Full face model. Some features of the full model are still under development. The full model will be released under a different USC specific license. For questions, or to sign up for a note on when it will be ready, contact bladin@ict.usc.edu, or haase@ict.usc.edu
+Additional features are supported in ICT's Full face model. Some features of the full model are still under development. The full model will be released under a different USC specific license. For questions, or to sign up for a note on when it will be ready, contact kallebladin@gmail.com, or haase@ict.usc.edu
 
 | Feature                              | ICT Face Model Light | Full ICT Face Model |
 |--------------------------------------|----------------------|---------------------|
