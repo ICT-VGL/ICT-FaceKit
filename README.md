@@ -1,6 +1,9 @@
 # ICT-FaceKit
 ICT's Vision and Graphics Lab's morphable face model and toolkit
 
+https://www.youtube.com/watch?v=MlGkzFeyCYc
+
+
 ## ICT Face Model Light
 The light version of the ICT Face Model consists of a base topology along with definitions of facial landmarks, rigid, and morphable vertices, and a set of linear shape vectors in the form of principal components of light stage scan data registered to a common topology.
 
