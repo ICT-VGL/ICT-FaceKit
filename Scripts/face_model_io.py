@@ -60,7 +60,7 @@ def write_deformed_mesh(file_path, face_model):
         face_model: Face model with deformabl mesh.
     """
     print("Writing: " + file_path)
-    om.write_mesh(file_path, face_model._deformed_mesh)
+    om.write_mesh(file_path, face_model._deformed_mesh, halfedge_tex_coord = True)
 
 def load_face_model(model_directory):
     """Loads the ICT Face Model.
@@ -174,7 +174,7 @@ class _DirectoryModelLoader:
             A openmesh.PolyMesh representation of the generic neutral mesh.
         """
         file_path = os.path.join(self._model_path, 'generic_neutral_mesh.obj')
-        generic_neutral_mesh = om.read_polymesh(file_path)
+        generic_neutral_mesh = om.read_polymesh(file_path, halfedge_tex_coord = True)
         return generic_neutral_mesh
 
     def _read_expression_morph_targets(self, expression_names):
